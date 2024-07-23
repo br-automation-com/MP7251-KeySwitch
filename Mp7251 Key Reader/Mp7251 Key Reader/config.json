@@ -1,0 +1,15 @@
+{
+  "Options": {
+    "LogLevel": "Debug"
+  },
+  "PLC": {
+    "IP_Address": "192.168.65.134",
+    "Port": 4840
+  },
+  "PLCVariables": {
+    "KeySwitch": {
+      "Name": "::AsGlobalPV:KeySwitch",
+      "NameSpaceIndex": 6
+    }
+  }
+}

@@ -1,0 +1,15 @@
+﻿<Window x:Class="Mp7251_Key_Reader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mp7251_Key_Reader"
+        mc:Ignorable="d"
+        Title="Mp7251 Key Reader" Height="450" Width="800">
+    <Grid>
+        <ScrollViewer x:Name="OutputWindowScrollViewer">
+            <TextBlock x:Name="OutputWindow" TextWrapping="Wrap" Height="auto" Width="auto"/>
+        </ScrollViewer>
+
+    </Grid>
+</Window>
