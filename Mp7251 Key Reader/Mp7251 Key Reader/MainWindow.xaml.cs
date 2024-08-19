@@ -4,12 +4,14 @@ using log4net.Appender;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Timers;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Mp7251_Key_Reader
 {
@@ -26,6 +28,7 @@ namespace Mp7251_Key_Reader
 
         private Timer updateTimer;
         private byte oldKeySwitches = 255;
+        private bool[] oldKeyMatrix;
         private void SetupLogger()
         {
             Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
@@ -100,6 +103,11 @@ namespace Mp7251_Key_Reader
             log.Debug("Connected to OpcUa server");
             oldKeySwitches = 255;
             ReadKeySwitch();
+
+            oldKeyMatrix = new bool[_plcVariables.KeyMatrix.Count];
+            ReadKeyMatrix();
+            foreach (var key in _plcVariables.KeyMatrix)
+                WriteKey(key, oldKeyMatrix[_plcVariables.KeyMatrix.IndexOf(key)]);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -127,7 +135,9 @@ namespace Mp7251_Key_Reader
 
         private void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            SelectPanel();
             ReadKeySwitch();
+            ReadKeyMatrix();
         }
 
         private void WriteOutput(string output)
@@ -146,7 +156,7 @@ namespace Mp7251_Key_Reader
             WriteOutput(message);
         }
 
-        private void ReadKeySwitch()
+        private void SelectPanel()
         {
             try
             {
@@ -163,7 +173,10 @@ namespace Mp7251_Key_Reader
                 return;
             }
 
+        }
 
+        private void ReadKeySwitch()
+        {
             if (!NativeMethods.AdiGetKeyCfgValue(KeyCfgValue.State, out bool keyCfgState))
             {
                 Error($"can't get key configuration state (error {Marshal.GetLastWin32Error()})");
@@ -184,6 +197,7 @@ namespace Mp7251_Key_Reader
 
         }
 
+
         private void WriteKeySwitch(UInt16 keySwitches)
         {
             WriteOutput($"Key switches: {keySwitches:X2}h");
@@ -191,6 +205,38 @@ namespace Mp7251_Key_Reader
             try
             {
                 _opcUaComm.Write(_plcVariables.KeySwitch, keySwitches);
+            }
+            catch (Exception e)
+            {
+                log.Error(e.Message);
+                WriteOutput(e.Message);
+            }
+        }
+
+        private void ReadKeyMatrix()
+        {
+            foreach (var key in _plcVariables.KeyMatrix)
+            {
+                if (!NativeMethods.AdiGetKey(key.KeyNumber, out bool value))
+                {
+                    Error($"can't get key matrix (error {Marshal.GetLastWin32Error()})");
+                    continue;
+                }
+                if (value != oldKeyMatrix[_plcVariables.KeyMatrix.IndexOf(key)])
+                {
+                    WriteKey(key, value);
+                    oldKeyMatrix[_plcVariables.KeyMatrix.IndexOf(key)] = value;
+                }
+            }
+        }
+
+        private void WriteKey(PLCVariable var, bool value)
+        {
+            WriteOutput($"Key {var.KeyNumber} : {value}");
+            log.Debug($"Key  {var.KeyNumber} : {value}");
+            try
+            {
+                _opcUaComm.Write(var, value);
             }
             catch (Exception e)
             {

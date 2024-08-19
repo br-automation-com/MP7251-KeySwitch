@@ -10,6 +10,109 @@
     "KeySwitch": {
       "Name": "::AsGlobalPV:KeySwitch",
       "NameSpaceIndex": 6
-    }
+    },
+    "KeyMatrix": [
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[0]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 0
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[1]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 1
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[2]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 2
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[3]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 3
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[4]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 4
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[5]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 5
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[6]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 6
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[7]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 7
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[8]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 8
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[9]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 9
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[10]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 10
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[11]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 11
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[12]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 12
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[13]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 13
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[14]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 14
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[15]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 15
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[16]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 16
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[17]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 17
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[18]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 18
+      },
+      {
+        "Name": "::AsGlobalPV:KeyMatrix[19]",
+        "NameSpaceIndex": 6,
+        "KeyNumber": 19
+      }
+
+    ]
   }
 }
